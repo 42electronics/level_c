@@ -47,7 +47,7 @@ mv lircd.conf /etc/lirc/lircd.conf
 
 reconfig /etc/lirc/lirc_options.conf "driver[[:space:]]*=[[:space:]]devinput" "driver          = default"
 reconfig /etc/lirc/lirc_options.conf "device[[:space:]]*=[[:space:]]auto" "device          = /dev/lirc0"
-reconfig /boot/config.txt "#dtoverlay=lirc-rpi" "dtoverlay=lirc-rpi,gpio_in_pin=23,gpio_out_pin=22"
+reconfig /boot/config.txt "#dtoverlay=lirc-rpi" "dtoverlay=gpio-rpi,gpio_pin=23"
 
 # PROMPT FOR REBOOT --------------------------------------------------------
 
