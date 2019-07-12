@@ -41,7 +41,7 @@ apt-get install -y --force-yes lirc
 
 cp /etc/lirc/lircd.conf /etc/lirc/lircd_BAK.conf
 
-curl -LO https://raw.githubusercontent.com/42electronics/level_c/master/lircd.conf
+curl -LO https://raw.githubusercontent.com/42electronics/level_c/master/lesson_2/lircd.conf
 
 mv lircd.conf /etc/lirc/lircd.conf
 
