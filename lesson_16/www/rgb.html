@@ -1,0 +1,35 @@
+<html>
+<head>
+<script Language="Javascript">
+function red()
+{
+    document.location="/cgi-bin/red.cgi";
+}
+function green()
+{
+    document.location="/cgi-bin/green.cgi";
+}
+function blue()
+{
+    document.location="/cgi-bin/blue.cgi";
+}
+function off()
+{
+    document.location="/cgi-bin/off.cgi";
+}
+window.oncontextmenu = function(event) {
+     event.preventDefault();
+     event.stopPropagation();
+     return false;
+}
+</script>
+</head>
+<body>
+    <div style="text-align:center" >
+    <img src="/images/red.jpg" id="red" onpointerdown="red()">
+    <img src="/images/green.jpg" id="green" onpointerdown="green()">
+    <img src="/images/blue.jpg" id="blue" onpointerdown="blue()">
+    <img src="/images/off.jpg" id="off" onpointerdown ="off()">
+    </div>
+</body>
+</html>
