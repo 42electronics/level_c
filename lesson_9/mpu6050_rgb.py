@@ -11,6 +11,7 @@ GPIO.setup(red, GPIO.OUT)
 GPIO.setup(green, GPIO.OUT)
 GPIO.setup(blue, GPIO.OUT)
 
+def led_update(red_value,green_value,blue_value):
     GPIO.output(red, red_value)
     GPIO.output(green, green_value)
     GPIO.output(blue, blue_value)
