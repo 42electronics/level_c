@@ -18,38 +18,22 @@
 #OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 #SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import RPi.GPIO as GPIO
+from tkinter import *
 import time
-from mpu6050 import mpu6050
 
-red = 13
-green = 19
-blue = 26
+def update():
+    display.delete(0,END)
+    display.insert(0, time.time())
+    root.after(300, update)
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(red, GPIO.OUT)
-GPIO.setup(green, GPIO.OUT)
-GPIO.setup(blue, GPIO.OUT)
+root = Tk()
+root.title('Timer')
+Label(root, text = 'Timer:').grid(row=0, column=0)
 
-def led_update(red_value,green_value,blue_value):
-    GPIO.output(red, red_value)
-    GPIO.output(green, green_value)
-    GPIO.output(blue, blue_value)
-	
-sensor = mpu6050(0x68)
+display = Entry(root)
+display.grid(row=0, column=1)
 
-try:
-    while True:
-        data = sensor.get_accel_data()
-        y_accel = data['y']
-        if y_accel > 4:
-            led_update(1,0,0)
-        elif y_accel < -4:
-            led_update(0,0,1)
-        else:
-            led_update(0,1,0)
-        time.sleep(0.05)
-		
-except KeyboardInterrupt:
-    led_update(0,0,0)
-    GPIO.cleanup()
+Button(root, text='Quit', command=root.destroy).grid(row=1, column=0)
+
+update()
+root.mainloop()

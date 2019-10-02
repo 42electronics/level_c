@@ -18,38 +18,26 @@
 #OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 #SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import RPi.GPIO as GPIO
-import time
-from mpu6050 import mpu6050
+school  = {'students': [{'name': 'Annie', 'age': 11, 'score': 'A+'},
+                       {'name':'Bobby', 'age': 13, 'score': 'B'},
+                       {'name': 'Carla', 'age': 14, 'score': 'B-'},
+                       {'name': 'David', 'age': 12, 'score': 'A'}],
+           'teachers': [{'name': 'Mr B', 'subject': 'Math', 'grade': '6th'},
+                       {'name': 'Mrs P', 'subject': 'Art', 'grade': '5th'}]}
+school['students'].append({'name': 'Eric', 'age': 110, 'score': 'A'})
 
-red = 13
-green = 19
-blue = 26
+total_students = len(school['students'])
+total_teachers = len(school['teachers'])
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(red, GPIO.OUT)
-GPIO.setup(green, GPIO.OUT)
-GPIO.setup(blue, GPIO.OUT)
 
-def led_update(red_value,green_value,blue_value):
-    GPIO.output(red, red_value)
-    GPIO.output(green, green_value)
-    GPIO.output(blue, blue_value)
-	
-sensor = mpu6050(0x68)
 
-try:
-    while True:
-        data = sensor.get_accel_data()
-        y_accel = data['y']
-        if y_accel > 4:
-            led_update(1,0,0)
-        elif y_accel < -4:
-            led_update(0,0,1)
-        else:
-            led_update(0,1,0)
-        time.sleep(0.05)
-		
-except KeyboardInterrupt:
-    led_update(0,0,0)
-    GPIO.cleanup()
+print('There are %s students' % total_students)
+print('There are %s teachers' % total_teachers)
+
+total_age = 0
+
+for i in range(0, total_students):
+    total_age = total_age + school['students'][i]['age']
+av_age = total_age / total_students
+print('Average student age is %s years old' % av_age)
+
