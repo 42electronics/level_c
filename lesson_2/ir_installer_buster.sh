@@ -40,8 +40,10 @@ reconfig() {
 
 apt-get install -y --force-yes lirc
 
-curl -LO https://raw.githubusercontent.com/42electronics/level_c/master/lesson_2/lircd.conf > /etc/lirc/lircd.conf
-curl -LO https://raw.githubusercontent.com/42electronics/level_c/master/lesson_2/lirc_options.conf > /etc/lirc/lirc_options.conf
+curl -LO https://raw.githubusercontent.com/42electronics/level_c/master/lesson_2/lircd.conf
+mv lircd.conf /etc/lirc/lircd.conf
+curl -LO https://raw.githubusercontent.com/42electronics/level_c/master/lesson_2/lirc_options.conf
+mv lirc_options.conf /etc/lirc/lirc_options.conf
 
 apt-get install -y --force-yes lirc
 
