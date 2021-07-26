@@ -37,6 +37,7 @@ reconfig() {
 	fi
 }
 apt-get update
+pip3 install --upgrade setuptools
 apt-get install -y --force-yes lirc
 
 cp /etc/lirc/lircd.conf /etc/lirc/lircd_BAK.conf

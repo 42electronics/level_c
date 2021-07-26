@@ -38,6 +38,8 @@ reconfig() {
 	fi
 }
 
+pip3 install --upgrade setuptools
+
 apt-get install -y --force-yes lirc
 
 curl -LO https://raw.githubusercontent.com/42electronics/level_c/master/lesson_2/lircd.conf
