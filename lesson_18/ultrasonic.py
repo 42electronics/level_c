@@ -34,10 +34,9 @@ def range_check():
     GPIO.output(trigger, True)
     time.sleep(0.00001)
     GPIO.output(trigger, False)
-    start_timer = time.time()
     
     while GPIO.input(echo) == False:
-        pass
+        start_timer = time.time()
     
     while GPIO.input(echo) == True:
         stop_timer = time.time()
