@@ -37,23 +37,24 @@ def led_update(red_value,green_value,blue_value):
     GPIO.output(blue, blue_value)
 
 try:
-    feed = urllib.request.urlopen('http://rgb.42electronics.com/color.txt')
-    contents = feed.read()
-    color = contents.decode("utf-8")
+    while True:
+        feed = urllib.request.urlopen('http://rgb.42electronics.com/color.txt')
+        contents = feed.read()
+        color = contents.decode("utf-8")
   
-    if color == 'red':
-        print('Red')
-        led_update(1,0,0)
-    elif color == 'green':
-        print('Green')
-        led_update(0,1,0)
-    elif color == 'blue':
-        print('Blue')
-        led_update(0,0,1)
-    else:
-        print('Unrecognized')
-        led_update(0,0,0)
-    time.sleep(30)
+        if color == 'red':
+            print('Red')
+            led_update(1,0,0)
+        elif color == 'green':
+            print('Green')
+            led_update(0,1,0)
+        elif color == 'blue':
+            print('Blue')
+            led_update(0,0,1)
+        else:
+            print('Unrecognized')
+            led_update(0,0,0)
+        time.sleep(30)
     
 except KeyboardInterrupt:
     led_update(0,0,0)
