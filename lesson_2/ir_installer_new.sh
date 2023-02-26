@@ -55,7 +55,8 @@ else
     echo "OS version is not Stretch"
     curl -LO https://raw.githubusercontent.com/42electronics/level_c/master/lesson_2/lirc_options.conf
     mv lirc_options.conf /etc/lirc/lirc_options.conf
-    apt-get install -y --force-yes lirc   
+    apt-get install -y --force-yes lirc
+    reconfig /boot/config.txt "#dtoverlay=gpio-ir,gpio_pin=17" "dtoverlay=gpio-ir,gpio_pin=23"    
 fi    
     
 
