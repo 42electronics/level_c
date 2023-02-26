@@ -50,6 +50,7 @@ if grep -Fq "stretch" /etc/os-release; then
     echo "OS version is Stretch"
     reconfig /etc/lirc/lirc_options.conf "driver[[:space:]]*=[[:space:]]devinput" "driver          = default"
     reconfig /etc/lirc/lirc_options.conf "device[[:space:]]*=[[:space:]]auto" "device          = /dev/lirc0"
+    reconfig /boot/config.txt "#dtoverlay=lirc-rpi" "dtoverlay=gpio-ir,gpio_pin=23"
 else
     echo "OS version is not Stretch"
     curl -LO https://raw.githubusercontent.com/42electronics/level_c/master/lesson_2/lirc_options.conf
@@ -57,7 +58,7 @@ else
     apt-get install -y --force-yes lirc   
 fi    
     
-reconfig /boot/config.txt "#dtoverlay=lirc-rpi" "dtoverlay=gpio-ir,gpio_pin=23"
+
 
 # PROMPT FOR REBOOT --------------------------------------------------------
 
