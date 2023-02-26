@@ -47,9 +47,11 @@ curl -LO https://raw.githubusercontent.com/42electronics/level_c/master/lesson_2
 mv lircd.conf /etc/lirc/lircd.conf
 
 if grep -Fq "stretch" /etc/os-release; then
+    echo "OS version is Stretch"
     reconfig /etc/lirc/lirc_options.conf "driver[[:space:]]*=[[:space:]]devinput" "driver          = default"
     reconfig /etc/lirc/lirc_options.conf "device[[:space:]]*=[[:space:]]auto" "device          = /dev/lirc0"
 else
+    echo "OS version is not Stretch"
     curl -LO https://raw.githubusercontent.com/42electronics/level_c/master/lesson_2/lirc_options.conf
     mv lirc_options.conf /etc/lirc/lirc_options.conf
     apt-get install -y --force-yes lirc   
